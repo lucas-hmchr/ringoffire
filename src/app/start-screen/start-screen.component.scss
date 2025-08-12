@@ -1,0 +1,25 @@
+.start-screen {
+    background-color: #531513;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    img{
+        height: 100vh;
+    }
+
+    h1 {
+        position: absolute;
+        bottom: 25%;
+        font-size: 48px;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
