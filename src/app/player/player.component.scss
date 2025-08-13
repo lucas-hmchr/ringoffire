@@ -1,0 +1,21 @@
+.player {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    background-color: orange;
+    width: 300px;
+    border-radius: 100px 0 0 100px;
+    padding: 16px;
+
+    img {
+        width: 100px;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    span {
+        font-size: 32px;
+        margin-left: 16px;
+    }
+}
