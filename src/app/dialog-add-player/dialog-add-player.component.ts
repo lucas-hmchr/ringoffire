@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
@@ -23,11 +23,9 @@ import { MatButtonModule } from '@angular/material/button';
 export class DialogAddPlayerComponent {
   name: string = '';
 
-  onNoClick() {
-    // später kannst du hier den Dialog schließen
-  }
+  constructor(private dialogRef: MatDialogRef<DialogAddPlayerComponent>){}
 
-  animal() {
-    return this.name; // nur Beispiel-Rückgabe
+  onNoClick() {
+    this.dialogRef.close()
   }
 }
