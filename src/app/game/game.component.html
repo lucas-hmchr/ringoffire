@@ -7,17 +7,17 @@
     <div class="card-stack">
         <!-- card deck -->
         @for(c of [0,1,2,3]; track c) {
-        <img src="/images/cards/card_cover.png" [ngStyle]="{'right.px': $index * 5}">
+        <img src="images/cards/card_cover.png" [ngStyle]="{'right.px': $index * 5}">
         }
         <!-- top card cover -->
-        <img src="/images/cards/card_cover.png" class="top-card" style="right: 25px" (click)="takeCard()">
+        <img src="images/cards/card_cover.png" class="top-card" style="right: 25px" (click)="takeCard()">
         <!-- deck of selected cards -->
         @for(c of game?.playedCards; track c) {
-        <img src="/images/cards/{{ c }}.png" class="played-card" alt="">
+        <img src="images/cards/{{ c }}.png" class="played-card" alt="">
         }
         <!-- card animation -->
         @if(pickCardAnimation){
-        <img src="/images/cards/{{ currentCard }}.png" class="pick-card" style="right: 25px" (click)="takeCard()">
+        <img src="images/cards/{{ currentCard }}.png" class="pick-card" style="right: 25px" (click)="takeCard()">
         }
     </div>
 </div>
