@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { Firestore } from '@angular/fire/firestore';
+import { AsyncPipe } from '@angular/common';
 
 
 @Component({
@@ -12,4 +14,5 @@ import {MatIconModule} from '@angular/material/icon';
 })
 export class AppComponent {
   title = 'ringoffire';
+  firestore: Firestore = inject(Firestore);
 }
