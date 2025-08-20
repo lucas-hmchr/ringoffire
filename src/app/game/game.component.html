@@ -16,12 +16,12 @@
         <img src="images/cards/{{ c }}.png" class="played-card" alt="">
         }
         <!-- card animation -->
-        @if(pickCardAnimation){
-        <img src="images/cards/{{ currentCard }}.png" class="pick-card" style="right: 25px" (click)="takeCard()">
+        @if(this.game?.pickCardAnimation){
+        <img src="images/cards/{{ this.game?.currentCard }}.png" class="pick-card" style="right: 25px" (click)="takeCard()">
         }
     </div>
 </div>
-<app-game-info class="pin-bottom" [card]="currentCard"></app-game-info>
+<app-game-info class="pin-bottom" [card]="this.game!.currentCard"></app-game-info>
 <button mat-fab color="primary" class="btn-add" (click)="openDialog()">
   <mat-icon>add</mat-icon>
 </button>
