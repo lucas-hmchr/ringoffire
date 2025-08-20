@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { GameInfoComponent } from "../game-info/game-info.component";
-import { Firestore } from '@angular/fire/firestore';
+import { addDoc, Firestore } from '@angular/fire/firestore';
 import { collection, collectionData } from '@angular/fire/firestore';
 
 
@@ -29,14 +29,18 @@ export class GameComponent implements OnInit {
 
   ngOnInit() {
     this.newGame();
-    const gamesRef = collection(this.firestore, 'games');
-    collectionData(gamesRef, { idField: 'id' }).subscribe((games) => {
+    collectionData(this.gamesRef(), { idField: 'id' }).subscribe((games) => {
       console.log('game update', games);
     });
   }
 
-  newGame() {
+  gamesRef() {
+    return collection(this.firestore, 'games');
+  }
+
+  async newGame() {
     this.game = new Game();
+    await addDoc(this.gamesRef(), this.game.toJson())
   }
 
   takeCard() {
