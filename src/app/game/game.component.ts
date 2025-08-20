@@ -7,8 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { GameInfoComponent } from "../game-info/game-info.component";
-import { addDoc, Firestore } from '@angular/fire/firestore';
+import { addDoc, doc, docData, Firestore } from '@angular/fire/firestore';
 import { collection, collectionData } from '@angular/fire/firestore';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -25,22 +26,34 @@ export class GameComponent implements OnInit {
 
   private firestore: Firestore = inject(Firestore);
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.newGame();
-    collectionData(this.gamesRef(), { idField: 'id' }).subscribe((games) => {
-      console.log('game update', games);
+    this.route.params.subscribe((params) => {
+      console.log(params)
+      docData(this.gameRef(params['id']), { idField: 'id' }).subscribe((game: any) => {
+        this.game = game;
+        console.log(game)
+      })
+      // collectionData(this.gamesRef(), { idField: 'id' }).subscribe((games) => {
+      //   console.log('game update', games);
+      // });
     });
+
   }
 
   gamesRef() {
     return collection(this.firestore, 'games');
   }
 
+  gameRef(id: string) {
+    return doc(this.firestore, `games/${id}`)
+  }
+
   async newGame() {
     this.game = new Game();
-    await addDoc(this.gamesRef(), this.game.toJson())
+    // await addDoc(this.gamesRef(), this.game.toJson())
   }
 
   takeCard() {
